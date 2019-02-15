@@ -10,10 +10,11 @@
                  [ring/ring-defaults "0.1.5"]
                  [bk/ring-gzip "0.1.1"]
                  [ring.middleware.logger "0.5.0"]
-                 [com.lucasbradstreet/instaparse-cljs "1.4.1.0"]
+                 [instaparse "1.4.7"]
                  [compojure "1.4.0"]
                  [org.omcljs/om "1.0.0-alpha28"]
-                 [environ "1.0.2"]]
+                 [environ "1.0.2"]
+                 [crustimoney "0.1.0"]]
 
   :plugins [[lein-cljsbuild "1.1.1"]
             [lein-environ "1.0.1"]]
@@ -82,7 +83,8 @@
              ;;
              ;; :open-file-command "myfile-opener"
 
-             :server-logfile "log/figwheel.log"}
+             :server-logfile "log/figwheel.log"
+             :server-port 3450}
 
   :doo {:build "test"}
 

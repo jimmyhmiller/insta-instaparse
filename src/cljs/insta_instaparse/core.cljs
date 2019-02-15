@@ -11,7 +11,8 @@
 
 (defn parser [grammar]
   (insta/parser grammar
-                :auto-whitespace :standard))
+                :auto-whitespace :standard
+                :partial true))
 
 
 (defn parse [grammar text]
@@ -22,10 +23,11 @@
 (enable-console-print!)
 
 (defonce app-state (atom {:text "aaaabbbb"
-                          :grammar "S = AB*
-                          AB = A B
-                          A = 'a'+
-                          B = 'b'+"}))
+                          :grammar 
+"S = AB*
+AB = A B
+A = 'a'+
+B = 'b'+"}))
 
 
 (def textarea-style
@@ -39,7 +41,7 @@
             (dom/div nil
                      (dom/textarea #js {:onChange (fn [e] (om/update! app [:text] (.. e -target -value))) :style textarea-style :value (:text app)})
                      (dom/textarea #js {:onChange (fn [e] (om/update! app [:grammar] (.. e -target -value)))  :style textarea-style :value (:grammar app)})
-                     (dom/div nil (dom/button #js {:onClick (fn [e] (om/update! app [:parsed-text] (parse (:grammar app) (:text app))))} "parse"))
+                     (dom/div nil (dom/button #js {:onClick (fn [e] (om/update! app [:parsed-text] (parse (:grammar app) (:text app) )))} "parse"))
                      (dom/div nil (dom/pre nil
                                            (with-out-str
                                              (pprint/pprint
